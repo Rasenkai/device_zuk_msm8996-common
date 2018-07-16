@@ -415,4 +415,7 @@
          For example, a device with Home, Back and Menu keys would set this
          config to 7. -->
     <integer name="config_deviceHardwareWakeKeys">79</integer>
+	
+    <!-- Flashlight on power button -->
+    <integer name="config_flashlightProximityTimeout">3000</integer>
 </resources>
