@@ -217,6 +217,9 @@ on early-boot
     write /sys/bus/msm_subsys/devices/subsys5/restart_level "related"
 
 on boot
+	# Start init.foreground.sh
+	start vendor.foreground_sh
+
     # U-Touch disable - KeyDisabler
     chown system system /sys/devices/soc/soc:fpc1020/utouch_disable
     chmod 0660 /sys/devices/soc/soc:fpc1020/utouch_disable
@@ -420,6 +423,13 @@ service vendor.msm_irqbalance /vendor/bin/msm_irqbalance -f /vendor/etc/msm_irqb
     user root
     group root
     writepid /dev/cpuset/system-background/tasks
+
+service vendor.foreground_sh /vendor/bin/init.foreground.sh
+    class main
+    user root
+    group root system readproc
+    disabled
+	oneshot
 
 service atfwd /vendor/bin/ATFWD-daemon
     class late_start
